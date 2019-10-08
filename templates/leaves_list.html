@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}
+    请假申请列表
+{% endblock %}
+
+
+{% block content %}
+
+    <div style="width: 100%;border: #4f1915 solid 0px;height: 50px;color: black;text-align: center;font-size: 30px">请假申请列表
+        <a href="/leave/"><div style="height: 30px;width: 80px;border: #ff253a solid 0px;font-size: 15px;background-color: #007bff;color: white;text-align: center;float: right;margin-right: 10px;margin-top: 20px;border-radius: 5px;;line-height: 30px">申请</div></a>
+    </div>
+    <div>
+            <table class="table">
+                <tr>
+                    <th>请假人</th>
+                    <th>请假类型</th>
+                    <th>起始时间</th>
+                    <th>结束时间</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                {% for leave in leave_page %}
+                    <tr>
+                        <td>{{ leave.request_name }}</td>
+                        <td>{{ leave.request_type }}</td>
+                        <td>{{ leave.request_start_time }}</td>
+                        <td>{{ leave.request_end_time }}</td>
+                        <td>
+                            {% if leave.request_static == "0" %}
+                                请假
+                            {% elif leave.request_static == "0" %}
+                                批准
+                            {% elif leave.request_static == "0" %}
+                                驳回
+                            {% elif leave.request_static == "0" %}
+                                销假
+                            {% endif %}
+                        </td>
+                        <td>
+                            <button class="btn btn-primary exit" self_id="{{ leave.id }}">撤销</button>
+                        </td>
+                        </tr>
+                {% endfor %}
+            </table>
+        <div style="width: 100%;height: 30px;border: #ff253a 0px solid">
+        <div style="width: 40%;height: 100%;float: left"></div>
+            {% for i in lis %}
+                <a href="/leaves_list/{{ i }}/"><div style="width: 30px;height: 100%;border: 0px salmon solid;float: left;text-align: center;line-height: 30px;margin-left: 5px;background-color: #007bff;color: black;border-radius: 5px">{{ i }}</div></a>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+
+      <script>
+        $(".exit").each(
+            function () {
+                $(this).click(
+                    function () {
+
+                        var id = $(this).attr("self_id");
+                        var url = "/cancel/";
+                        $.ajax(
+                            {
+                                url: url,
+                                type: "post",
+                                data: {"id":id},
+                                success: function (data) {
+                                    alert(data["data"]);
+                                    window.location.reload()
+                                },
+                                error:function (error) {
+                                    console.log(error)
+                                }
+                            }
+                        )
+                    }
+                )
+            }
+        )
+    </script>
+{% endblock %}

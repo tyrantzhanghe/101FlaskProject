@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Form
+{% endblock %}
+
+{% block content %}
+
+    <form method="post">
+        {% for f in task %}
+            <p>{{ f }}</p>
+        {% endfor %}
+        <input type="submit" value="提交" class="btn btn-primary btn-block">
+    </form>
+
+{% endblock %}

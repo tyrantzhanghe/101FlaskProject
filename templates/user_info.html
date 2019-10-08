@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}
+个人中心
+{% endblock %}
+
+
+{% block content %}
+        <div class="col-xl-12 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><h4>个人资料</h4></div>
+                  <div class="card-body">
+                      <table class="table">
+                          <tr>
+                              <td rowspan="4" width="150px"><img src="/static/img/touxiang.jpg"></td>
+                              <th>姓名</th>
+                              <td>tyrant</td>
+                              <th>职位</th>
+                              <td>学员</td>
+                          </tr>
+                          <tr>
+                              <th>年龄</th>
+                              <td>18</td>
+                              <th>性别</th>
+                              <td>男</td>
+                          </tr>
+                          <tr>
+                              <th>身高</th>
+                              <td>180</td>
+                              <th>体重</th>
+                              <td>180</td>
+                          </tr>
+                          <tr>
+                              <th>现居地址</th>
+                              <td colspan="3">XXXXXXXXXXXXXXX</td>
+                          </tr>
+                      </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-12 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><h4>课程表</h4></div>
+                  <div class="card-body">
+                      <table class="table">
+                          <tr>
+                              <th>周一</th>
+                              <th>周二</th>
+                              <th>周三</th>
+                              <th>周四</th>
+                              <th>周五</th>
+                              <th>周六</th>
+                              <th>周日</th>
+                          </tr>
+                          {% for w in calendar %}
+                            <tr>
+                                {% for d in w %}
+                                    <td style="text-align: center"><span style="color: #007bff">{{ d['day'] }}</span><br><span style="color: #78261f;font-size: 10px">{{ d['project'] }}</span></td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                      </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+{% endblock %}
